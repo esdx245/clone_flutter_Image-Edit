@@ -31,9 +31,7 @@ class _EditImageScreenState extends EditImageViewModel {
                     onLongPress: () {
                       print('long press detected');
                     },
-                    onTap: () {
-                      print('tap detected');
-                    },
+                    onTap: () => setCurrentIndex(context, i),
                     child: Draggable(
                       feedback: ImageText(textInfo: texts[i]),
                       child: ImageText(textInfo: texts[i]),
@@ -141,7 +139,7 @@ class _EditImageScreenState extends EditImageViewModel {
             Tooltip(
                 message: 'Black',
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () => changeTextColor(Colors.black),
                   child: const CircleAvatar(
                     backgroundColor: Colors.black,
                   ),
@@ -152,7 +150,7 @@ class _EditImageScreenState extends EditImageViewModel {
             Tooltip(
                 message: 'red',
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () => changeTextColor(Colors.red),
                   child: const CircleAvatar(
                     backgroundColor: Colors.red,
                   ),
@@ -163,7 +161,7 @@ class _EditImageScreenState extends EditImageViewModel {
             Tooltip(
                 message: 'Yellow',
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () => changeTextColor(Colors.yellow),
                   child: const CircleAvatar(
                     backgroundColor: Colors.yellow,
                   ),
