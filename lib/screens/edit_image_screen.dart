@@ -29,7 +29,10 @@ class _EditImageScreenState extends EditImageViewModel {
                 top: texts[i].top,
                 child: GestureDetector(
                     onLongPress: () {
-                      print('long press detected');
+                      setState(() {
+                        currentIndex = i;
+                        removeText(context);
+                      });
                     },
                     onTap: () => setCurrentIndex(context, i),
                     child: Draggable(
@@ -40,7 +43,7 @@ class _EditImageScreenState extends EditImageViewModel {
                             context.findRenderObject() as RenderBox;
                         Offset off = renderBox.globalToLocal(drag.offset);
                         setState(() {
-                          texts[i].top = off.dy - 59;
+                          texts[i].top = off.dy - 115;
                           texts[i].left = off.dx;
                         });
                       },
@@ -97,42 +100,42 @@ class _EditImageScreenState extends EditImageViewModel {
               tooltip: 'Save Image',
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () => increaseFontSize(),
               icon: const Icon(Icons.add, color: Colors.black),
               tooltip: 'Increase Font Size',
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () => decreaseFontSize(),
               icon: const Icon(Icons.remove, color: Colors.black),
               tooltip: 'Decrease Font Size',
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () => allignLeft(),
               icon: const Icon(Icons.format_align_left, color: Colors.black),
               tooltip: 'Align Left',
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () => allignCenter(),
               icon: const Icon(Icons.format_align_center, color: Colors.black),
               tooltip: 'Align Center',
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () => allignRight(),
               icon: const Icon(Icons.format_align_right, color: Colors.black),
               tooltip: 'Align Right',
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () => textBold(),
               icon: const Icon(Icons.format_bold, color: Colors.black),
               tooltip: 'Bold',
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () => textItalic(),
               icon: const Icon(Icons.format_italic, color: Colors.black),
               tooltip: 'Italic',
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: () => addLinesToText(),
               icon: const Icon(Icons.space_bar, color: Colors.black),
               tooltip: 'Add New Line',
             ),

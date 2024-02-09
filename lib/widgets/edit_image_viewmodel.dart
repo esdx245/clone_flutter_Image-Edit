@@ -10,6 +10,19 @@ abstract class EditImageViewModel extends State<EditImageScreen> {
   List<TextInfo> texts = [];
 
   int currentIndex = 0;
+
+  removeText(BuildContext context) {
+    setState(() {
+      texts.removeAt(currentIndex);
+    });
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text(
+        'Text Removed',
+        style: TextStyle(fontSize: 16.0),
+      ),
+    ));
+  }
+
   setCurrentIndex(BuildContext context, int index) {
     setState(() {
       currentIndex = index;
@@ -25,6 +38,62 @@ abstract class EditImageViewModel extends State<EditImageScreen> {
   changeTextColor(Color color) {
     setState(() {
       texts[currentIndex].color = color;
+    });
+  }
+
+  increaseFontSize() {
+    setState(() {
+      texts[currentIndex].fontSize += 2;
+    });
+  }
+
+  decreaseFontSize() {
+    setState(() {
+      texts[currentIndex].fontSize -= 2;
+    });
+  }
+
+  allignLeft() {
+    setState(() {
+      texts[currentIndex].textAlign = TextAlign.left;
+    });
+  }
+
+  allignCenter() {
+    setState(() {
+      texts[currentIndex].textAlign = TextAlign.center;
+    });
+  }
+
+  allignRight() {
+    setState(() {
+      texts[currentIndex].textAlign = TextAlign.right;
+    });
+  }
+
+  textBold() {
+    setState(() {
+      if (texts[currentIndex].fontWeight == FontWeight.bold) {
+        texts[currentIndex].fontWeight = FontWeight.normal;
+      } else {
+        texts[currentIndex].fontWeight = FontWeight.bold;
+      }
+    });
+  }
+
+  textItalic() {
+    setState(() {
+      if (texts[currentIndex].fontStyle == FontStyle.italic) {
+        texts[currentIndex].fontStyle = FontStyle.normal;
+      } else {
+        texts[currentIndex].fontStyle = FontStyle.italic;
+      }
+    });
+  }
+
+  addLinesToText() {
+    setState(() {
+      texts[currentIndex].text = texts[currentIndex].text.replaceAll(' ', '\n');
     });
   }
 
